@@ -8,8 +8,8 @@
 const CANVAS = document.createElement("canvas");
 const CONTEXT = CANVAS.getContext("2d");
 
-CANVAS.width = 600;
-CANVAS.height = 600;
+CANVAS.width = 100;
+CANVAS.height = 100;
 CANVAS.id = "stage";
 // CANVAS.style.setProperty("border", "1px solid black");
 
@@ -24,6 +24,7 @@ class ThomasTangles {
     constructor(canvas, context) {
         this.canvas = canvas;
         this.context = context;
+        this.context.imageSmoothingEnabled = false;
         this.blocks = [];
         this.init();
     }

@@ -14,3 +14,9 @@ main {
 body {
     background: lightblue;
 }
+
+canvas {
+  width: 400px;
+  height: 400px;
+  image-rendering: pixelated;
+}
