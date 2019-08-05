@@ -100,9 +100,8 @@ class ThomasTangles {
                     this.addBlock(this.player.x, this.player.y, this.player.color);
                 }
             } else {
-                //roll dice == 6
-                this.player.x = this.centerSquare.x;
-                this.player.y = this.centerSquare.y;
+                this.player.x = this.random(0, this.canvas.width);
+                this.player.y = this.random(0, this.canvas.height);
             }
         } else if (this.number == 5) {
             let color = this.dice();
@@ -127,8 +126,9 @@ class ThomasTangles {
                     break;
             }
         } else {
-            this.player.x = this.random(0, this.canvas.width);
-            this.player.y = this.random(0, this.canvas.height);
+            //roll dice == 6
+            this.player.x = this.centerSquare.x;
+            this.player.y = this.centerSquare.y;
         }
 
         this.number = this.dice();
