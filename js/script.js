@@ -30,7 +30,8 @@ class ThomasTangles {
 
     init() {
         this.canvas.style.setProperty("background", "#fff");
-        this.player = {x: CENTER.x, y: CENTER.y, color: "#000"};
+        this.player = {x: this.random(0, this.canvas.width), y: this.random(0, this.canvas.height), color: "#000"};
+        this.centerSquare = {x: this.player.x, y: this.player.y};
         this.number = this.dice();
         this.game();
     }
@@ -53,6 +54,7 @@ class ThomasTangles {
         if (this.number == 1) {
             let moves = this.dice();
             if (!this.checkForBlocks(this.player.x, this.player.y - moves)) {
+                this.centerSquare = {x: this.player.x, y: this.player.y};
                 for (let i = 0; i < moves; i++) {
                     this.player.y--;
                     this.draw(this.player.x, this.player.y, this.player.color);
@@ -65,6 +67,7 @@ class ThomasTangles {
         } else if (this.number == 2) {
             let moves = this.dice();
             if (!this.checkForBlocks(this.player.x, this.player.y + moves)) {
+                this.centerSquare = {x: this.player.x, y: this.player.y};
                 for (let i = 0; i < moves; i++) {
                     this.player.y++;
                     this.draw(this.player.x, this.player.y, this.player.color);
@@ -77,6 +80,7 @@ class ThomasTangles {
         } else if (this.number == 3) {
             let moves = this.dice();
             if (!this.checkForBlocks(this.player.x - moves, this.player.y)) {
+                this.centerSquare = {x: this.player.x, y: this.player.y};
                 for (let i = 0; i < moves; i++) {
                     this.player.x--;
                     this.draw(this.player.x, this.player.y, this.player.color);
@@ -89,14 +93,16 @@ class ThomasTangles {
         } else if (this.number == 4) {
             let moves = this.dice();
             if (!this.checkForBlocks(this.player.x + moves, this.player.y)) {
+                this.centerSquare = {x: this.player.x, y: this.player.y};
                 for (let i = 0; i < moves; i++) {
                     this.player.x++;
                     this.draw(this.player.x, this.player.y, this.player.color);
                     this.addBlock(this.player.x, this.player.y, this.player.color);
                 }
             } else {
-                this.player.x = this.random(0, this.canvas.width);
-                this.player.y = this.random(0, this.canvas.height);
+                //roll dice == 6
+                this.player.x = this.centerSquare.x;
+                this.player.y = this.centerSquare.y;
             }
         } else if (this.number == 5) {
             let color = this.dice();
